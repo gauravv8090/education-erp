@@ -114,7 +114,7 @@ try {
 }else if(data.order_status === "ACTIVE"){
       return res.redirect("http://localhost:3000/student-dashboard/profile?status=pending")
     }else
-        return res.redirect("http://localhost:3000/student-dashboard/profile?status=failure")
+        return res.redirect(`http://localhost:3000/student-dashboard/profile?status=${data.order_status}`)
 } catch (error) {
   console.error(error);
 }
