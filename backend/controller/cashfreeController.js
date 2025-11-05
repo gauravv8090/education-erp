@@ -54,7 +54,7 @@ export const generatePaymentSessionId = async (req, res) => {
     order_amount: pendingFees,
     customer_details: { customer_id: "100", customer_phone: "8090900998" },
     order_meta : {
-        notify_url : "https://webhook.site/e146a8b5-a68d-466b-9e37-2aeb6131a65a",
+        notify_url : "https://education-erp-6thr.onrender.com/api/payment/webhook",
         payment_methods : "cc,dc,upi"
     },
     order_id : orderId,
