@@ -59,7 +59,7 @@ export const generatePaymentSessionId = async (req, res) => {
     },
     order_id : orderId,
     order_note : "This is my first order",
-    return_url: "http://localhost:3000/student-dashboard/profile"
+    return_url: "https://education-erp.netlify.app/student-dashboard/profile"
   };
   const url = "https://sandbox.cashfree.com/pg/orders";
   const options = {
@@ -110,11 +110,11 @@ try {
   const data = await response.json();
   console.log(data);
   if(data.order_status === "SUCCESS"){
-    return res.redirect("http://localhost:3000/student-dashboard/profile?status=success")
+    return res.redirect("https://education-erp.netlify.app/student-dashboard/profile?status=success")
 }else if(data.order_status === "ACTIVE"){
-      return res.redirect("http://localhost:3000/student-dashboard/profile?status=pending")
+      return res.redirect("https://education-erp.netlify.app/student-dashboard/profile?status=pending")
     }else
-        return res.redirect(`http://localhost:3000/student-dashboard/profile?status=${data.order_status}`)
+        return res.redirect(`https://education-erp.netlify.app/student-dashboard/profile?status=${data.order_status}`)
 } catch (error) {
   console.error(error);
 }
