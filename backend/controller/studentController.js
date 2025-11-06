@@ -2,6 +2,9 @@ import Student from "../models/studentModel.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { Resend } from 'resend';
+
+const resend = new Resend('re_4mh1Bxfq_K2Y5NTR8KX53osR9RV7ypz6t');
 
 export const getStudentsSummary = async (req, res) => {
   try {
@@ -85,10 +88,16 @@ export const createStudent = async (req, res) => {
       <p>Regards,<br/>ERP Admin</p>
     `;
 
+    await resend.emails.send({
+  from: "EduERP <no-reply@eduerp.com>",
+  to: saved.email,
+  subject: "Welcome to EduERP",
+  html,
+});
     // Send registration email
-     sendEmail(saved.email, "Welcome to Education ERP", html)
-     .then(() => console.log("Email sent to:", saved.email))
-      .catch((err) => console.error("Email failed:", err));
+    //  sendEmail(saved.email, "Welcome to Education ERP", html)
+    //  .then(() => console.log("Email sent to:", saved.email))
+    //   .catch((err) => console.error("Email failed:", err));
     
   } catch (error) {
     res.status(400).json({ message: error.message });
