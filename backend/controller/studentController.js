@@ -74,7 +74,6 @@ export const createStudent = async (req, res) => {
     const student = new Student(studentObject);
     const saved = await student.save();
 
-    res.status(201).json(saved);
 
     // Email content
     const html = `
@@ -90,10 +89,13 @@ export const createStudent = async (req, res) => {
 
     await resend.emails.send({
   from: "EduERP <onboarding@resend.dev>",
-  to: saved.email,
+  to: "gaurav8090983461@gmail.com",
   subject: "Welcome to EduERP",
   html,
 });
+
+    res.status(201).json(saved);
+
     // Send registration email
     //  sendEmail(saved.email, "Welcome to Education ERP", html)
     //  .then(() => console.log("Email sent to:", saved.email))

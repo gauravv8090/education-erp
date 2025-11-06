@@ -2,7 +2,7 @@
 declare interface studentObjectType {
 	static from: string;
 
-	static to: any;
+	static to: string;
 
 	static subject: string;
 }
