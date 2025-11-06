@@ -89,7 +89,7 @@ export const createStudent = async (req, res) => {
     `;
 
     await resend.emails.send({
-  from: "EduERP <no-reply@eduerp.com>",
+  from: "EduERP <onboarding@resend.dev>",
   to: saved.email,
   subject: "Welcome to EduERP",
   html,
