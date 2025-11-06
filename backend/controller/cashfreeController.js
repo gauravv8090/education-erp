@@ -3,7 +3,7 @@ import Student from "../models/studentModel.js";
 
 export const cashfreeWebhook = async (req, res) => {
   try {
-    const event = req.body; // Cashfree sends JSON payload
+    const event = req.body; 
     console.log("Webhook received:", event);
 
     // const { order_status } = event.data || {};

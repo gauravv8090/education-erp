@@ -3,6 +3,29 @@ import { sendEmail } from "../utils/sendEmail.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+export const getStudentsSummary = async (req, res) => {
+  try {
+    const students = await Student.find(); 
+    const totalStudents = students.length;
+
+    const feesCollected = students.reduce(
+      (sum, s) => sum + (s.amountPaid || 0),
+      0
+    );
+    const totalFees = students.reduce(
+      (sum, s) => sum + (s.totalFees || 0),
+      0
+    );
+    const pendingFees = totalFees - feesCollected;
+
+    res.json({ totalStudents, feesCollected, pendingFees });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error fetching summary" });
+  }
+};
+
+
 export const studentLogin = async (req, res) => {
   const { email, password } = req.body;
 

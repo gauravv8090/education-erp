@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import studentRoutes from '../backend/routes/studentRoutes.js'
 import adminRoutes from "../backend/routes/adminRoutes.js"
+import attendanceRoutes from "../backend/routes/attendanceRoutes.js"
 import cashfreeRoutes from "../backend/routes/cashfreeRoutes.js"
 import connectDB from './config/db.js';
 
@@ -18,6 +19,8 @@ app.use(cors())
 app.use("/api/students", studentRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/payment", cashfreeRoutes);
+app.use("/api/attendance", attendanceRoutes);
+
 
 app.get("/", (req, res) => {
     res.send("ERP backend is running");
