@@ -71,6 +71,7 @@ export const createStudent = async (req, res) => {
     const student = new Student(studentObject);
     const saved = await student.save();
 
+    res.status(201).json(saved);
 
     // Email content
     const html = `
@@ -85,9 +86,10 @@ export const createStudent = async (req, res) => {
     `;
 
     // Send registration email
-    await sendEmail(saved.email, "Welcome to Education ERP", html);
-
-    res.status(201).json(saved);
+     sendEmail(saved.email, "Welcome to Education ERP", html)
+     .then(() => console.log("Email sent to:", saved.email))
+      .catch((err) => console.error("Email failed:", err));
+    
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
